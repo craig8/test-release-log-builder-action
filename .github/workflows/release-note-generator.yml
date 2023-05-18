@@ -25,6 +25,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3.5.2
         with:
+          token: ${{ secrets.AUTO_PROJECT_PAT }}
           fetch-depth: 0
 
         # Showcases a more complex configuration, providing a configuration, and specifically referencing owner, repo, from and to tag
@@ -54,5 +55,3 @@ jobs:
           prerelease: ${{ contains(github.ref, '-rc') || contains(github.ref, '-b') || contains(github.ref, '-a') }}
           token: ${{ secrets.AUTO_PROJECT_PAT }}
           tag_name: ${{steps.complex_release.outputs.toTag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
