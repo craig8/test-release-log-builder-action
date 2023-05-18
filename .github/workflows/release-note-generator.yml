@@ -28,9 +28,11 @@ jobs:
           fetch-depth: 0
 
         # Showcases a more complex configuration, providing a configuration, and specifically referencing owner, repo, from and to tag
-      - name: "Complex Configuration"
+      - name: Release Changelog Builder
+        uses: mikepenz/release-changelog-builder-action@v3.7.2
+      
         id: complex_release
-        uses: ./github/workflows
+        #uses: ./github/workflows
         with:
           configuration: "complex-config.json"
           # owner: "mikepenz"
