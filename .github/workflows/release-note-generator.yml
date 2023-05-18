@@ -44,4 +44,4 @@ jobs:
       - name: Echo Complex Configuration Changelog
         env:
           CHANGELOG: ${{ steps.complex_release.outputs.changelog }}
-        run: echo "CHANGELOG"
+        run: echo "$CHANGELOG"
