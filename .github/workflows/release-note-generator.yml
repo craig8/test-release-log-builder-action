@@ -34,7 +34,7 @@ jobs:
         id: complex_release
         #uses: ./github/workflows
         with:
-          configuration: "complex-config.json"
+          configuration: ".github/workflows/complex-config.json"
           # owner: "mikepenz"
           # repo: "release-changelog-builder-action"
           # fromTag: "v0.0.1"
