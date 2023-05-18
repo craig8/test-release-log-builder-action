@@ -27,34 +27,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "Build Changelog"
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v3.7.2
+        # Showcases a more complex configuration, providing a configuration, and specifically referencing owner, repo, from and to tag
+      - name: "Complex Configuration"
+        id: complex_release
+        uses: ./github/workflows
         with:
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
-              "categories": [
-                {
-                    "title": "## 🚀 Features",
-                    "labels": ["feature"]
-                },
-                {
-                    "title": "## 🐛 Fixes",
-                    "labels": ["fix"]
-                },
-                {
-                    "title": "## 🧪 Tests",
-                    "labels": ["test"]
-                },
-                {
-                    "title": "## 💬 Other",
-                    "labels": ["other"]
-                },
-                {
-                    "title": "## 📦 Dependencies",
-                    "labels": ["dependencies"]
-                }
-              ]
-            }
-      - run: echo "${{ steps.build_changelog.output }}"
+          configuration: "complex-config.json"
+          # owner: "mikepenz"
+          # repo: "release-changelog-builder-action"
+          # fromTag: "v0.0.1"
+          # toTag: "v0.0.3"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo Complex Configuration Changelog
+        env:
+          CHANGELOG: ${{ steps.complex_release.outputs.changelog }}
+        run: echo "CHANGELOG"
