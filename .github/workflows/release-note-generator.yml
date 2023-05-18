@@ -53,9 +53,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # target_commitish: ${{ github.event.pull_request.merge_commit_sha }}
-          tag_name: ${{ steps.complex_release.outputs.changelog.toTag }}
-          name: ${{ steps.complex_release.outputs.changelog.toTag }}
+          tag_name: ${{ steps.complex_release.outputs.toTag }}
+          name: ${{ steps.complex_release.outputs.toTag }}
           draft: false
-          prerelease: ${{ contains(steps.complex_release.outputs.changelog.toTag, '-a') || contains(steps.complex_release.outputs.changelog, '-rc')  }}
+          prerelease: ${{ contains(steps.complex_release.outputs.toTag, '-a') || contains(steps.complex_release.outputs.toTag, '-rc')  }}
           body: |
-            ${{steps.complex_release.outputs}}
+            ${{steps.complex_release.outputs.changelog}}
