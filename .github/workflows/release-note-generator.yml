@@ -30,5 +30,7 @@ jobs:
       - name: "Build Changelog"
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v3.7.2
+        with:
+          configuration: "release-note-generator.yml"
 
       - run: echo "${{ steps.build_changelog.output }}"
