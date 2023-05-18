@@ -47,11 +47,15 @@ jobs:
           CHANGELOG: ${{ steps.complex_release.outputs.changelog }}
         run: echo "$CHANGELOG"
 
-      - name: Create GH Release
-        uses: softprops/action-gh-release@v0.1.15
-    
+      - name: Create Release
+        uses: thomaseizinger/create-release@1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          body: ${{steps.complex_release.outputs.changelog}}
-          prerelease: ${{ contains(github.ref, '-rc') || contains(github.ref, '-b') || contains(github.ref, '-a') }}
-          token: ${{ secrets.AUTO_PROJECT_PAT }}
-          tag_name: ${{steps.complex_release.outputs.toTag }}
+          # target_commitish: ${{ github.event.pull_request.merge_commit_sha }}
+          tag_name: ${{ steps.complex_release.outputs.changelog.toTag }}
+          name: ${{ steps.complex_release.outputs.changelog.toTag }}
+          draft: false
+          prerelease: ${{ contains(steps.complex_release.outputs.changelog.toTag, '-a') || contains(steps.complex_release.outputs.changelog, '-rc')  }}
+          body: |
+            ${{steps.complex_release.outputs}}
