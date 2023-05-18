@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "test-release-log-builder-action"
+version = "0.0.2a0"
+description = "A test of the release log builder"
+authors = ["Craig <3979063+craig8@users.noreply.github.com>"]
+license = "Apache 2"
+readme = "README.md"
+packages = [{include = "test_release_log_builder_action"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
