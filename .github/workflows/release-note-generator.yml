@@ -13,6 +13,7 @@ env:
   LC_ALL: en_US.utf-8
   PYTHON_VERSION: '3.10'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+permissions: write-all
 
 jobs:
   release-note-generation:
